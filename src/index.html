@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./output.css">
 </head>
 
-<body>
+<body class="p-4 bg-white">
 <!-- <header>
   <h1 class="">Todo List</h1>
 </header>
@@ -44,32 +44,85 @@
 </div> -->
 
 <header>
-  <nav>
+  <nav class="flex justify-between items-center bg-white mb-6">
     <div class="back-arrow">
-      <
+      <button class="h-7 w-7 rounded-full flex text-center justify-center mx-2 my-2 text-gray-600 border border-gray-300 hover:bg-gray-300"><</button>
     </div>
 
-    <div class="profile">
-      <img src="../assets/trash-fill.svg" alt="" width="30" height="30">
+    <div class="profile flex gap-3 items-center">
+      <img class="h-10 w-10 rounded-full shadow-xl/30" src="../assets/download.jpg" alt="">
       <div>
-        <p>Hello,</p>
-        <p>name</p>
+        <p class="text-[12px] text-gray-500">Hello,</p>
+        <p class="text-sm font-normal">Tora Digda K</p>
       </div>
     </div>
   </nav>
 </header>
 
 <main>
-  <div class="contaner-on-progress">
-    <p>on Progress</p>
-    <div class="modal">
-      isi modal on progress
+  <div class="contaner-on-progress mb-6">
+    <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400">(12)</span></p>
+    <div class="content-on-progress flex flex-nowrap overflow-x-auto gap-3 p-4 -m-4">
+      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container-completed">
-    <p>completed</p>
-    <div class="modal">
-      isi modal completed
+  
+  <div class="container-completed mb-6">
+    <p class="text-base font-semibold">completed <span class="font-medium text-gray-400">(12)</span></p>
+    <div class="content-completed flex flex-col gap-3 items-center">
+      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+        <div class="card-body">
+          <h2 class="card-title">Large Card</h2>
+          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <div class="justify-end card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <button popovertarget="add-list">+ Tambah List Baru</button>
@@ -78,7 +131,12 @@
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia officiis nisi architecto reiciendis ut ducimus harum, cumque ipsa voluptas quod tenetur sequi quae incidunt. Omnis atque consectetur fugiat aspernatur obcaecati!
   </div>
 
+  <div>
+    
+  </div>
+
 </main>
+
 
 <footer></footer>
 
