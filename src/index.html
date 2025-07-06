@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./output.css">
 </head>
 
-<body class="p-4 bg-white">
+<body class="p-4 bg-white relative">
 <!-- <header>
   <h1 class="">Todo List</h1>
 </header>
@@ -43,8 +43,8 @@
 
 </div> -->
 
-<header>
-  <nav class="flex justify-between items-center bg-white mb-6">
+<header class="fixed top-0 left-0 right-0 z-50">
+  <nav class="flex justify-between items-center bg-white/80 backdrop-blur-sm mb-6 p-3">
     <div class="back-arrow">
       <button class="h-7 w-7 rounded-full flex text-center justify-center mx-2 my-2 text-gray-600 border border-gray-300 hover:bg-gray-300"><</button>
     </div>
@@ -59,7 +59,7 @@
   </nav>
 </header>
 
-<main>
+<main class="py-14">
   <div class="contaner-on-progress mb-6">
     <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400">(12)</span></p>
     <div class="content-on-progress flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8">
@@ -125,7 +125,10 @@
       </div>
     </div>
   </div>
-  <button popovertarget="add-list">+ Tambah List Baru</button>
+  
+  <div class="flex justify-center fixed bottom-0 left-0 right-0 z-50 py-4 bg-white/80 backdrop-blur-sm">
+    <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center" popovertarget="add-list">+ Tambah List Baru</button>
+  </div>
   
   <div popover id="add-list">
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia officiis nisi architecto reiciendis ut ducimus harum, cumque ipsa voluptas quod tenetur sequi quae incidunt. Omnis atque consectetur fugiat aspernatur obcaecati!
@@ -138,7 +141,7 @@
 </main>
 
 
-<footer></footer>
+<footer class="pb-14"><p>this website is build by adabsdja </p></footer>
 
 
 <script src="js/script.js"></script>
