@@ -14,19 +14,9 @@
 </header>
 
 <div class="wrapper">
-  <div class="container bg-white shadow" id="add-todo">
+  <div class="container bg-white shadow" id="">
     <h2 class="container-header text-center">Tambah yang harus dilakukan</h2>
-    <form class="form" action="#" id="form">
-      <div class="form-group form-title">
-        <label for="title">Masukkan hal yang akan dilakukan</label>
-        <input type="text" id="title" name="title" required>
-      </div>
-      <div class="form-group form-title">
-        <label for="date">Masukkan tanggal harus selesai</label>
-        <input type="date" id="date" name="date" required>
-      </div>
-      <input type="submit" value="Submit" name="Submit" class="btn-submit">
-    </form>
+    
   </div>
 
   <div class="container">
@@ -43,7 +33,7 @@
 
 </div> -->
 
-<header class="fixed top-0 left-0 right-0 z-50">
+<header class="fixed top-0 left-0 right-0 z-10">
   <nav class="flex justify-between items-center bg-white/80 backdrop-blur-sm mb-6 p-3">
     <div class="back-arrow">
       <button class="h-7 w-7 rounded-full flex text-center justify-center mx-2 my-2 text-gray-600 border border-gray-300 hover:bg-gray-300"><</button>
@@ -60,83 +50,77 @@
 </header>
 
 <main class="py-14">
-  <div class="contaner-on-progress mb-6">
+  <div class="contaner mb-6">
     <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400">(12)</span></p>
-    <div class="content-on-progress flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8">
+    <div class="content flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8" id="todos">
+
       <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
         <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <p class="font-medium text-lg">Tittle</p>
+          <p class="font-normal text-xs">18 april 2026</p>
+          <hr>
+          <p class="font-normal text-sm">description :</p>
+          <p class="font-normal text-base">A card component has a figure, a body part, and inside body there are title and actions parts</p>
           <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+            <button><img src="../assets/check-solid.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
           </div>
         </div>
       </div>
-      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-        <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-          <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-        <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-          <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
   
-  <div class="container-completed mb-6">
+  <div class="container mb-6">
     <p class="text-base font-semibold">completed <span class="font-medium text-gray-400">(12)</span></p>
-    <div class="content-completed flex flex-col gap-3 items-center">
-      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
+    <div class="content flex flex-col gap-3 items-center" id="completed-todos">
+
+      <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
         <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <p class="font-medium text-lg">Tittle</p>
+          <p class="font-normal text-xs">18 april 2026</p>
+          <hr>
+          <p class="font-normal text-sm">description :</p>
+          <p class="font-normal text-base">A card component has a figure, a body part, and inside body there are title and actions parts</p>
           <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+            <button><img src="../assets/trash-fill.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
+            <button><img src="../assets/undo-ouline.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
           </div>
         </div>
       </div>
-      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-        <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-          <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
-      <div class="card w-[350px] bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-        <div class="card-body">
-          <h2 class="card-title">Large Card</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-          <div class="justify-end card-actions">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
-        </div>
-      </div>
+      
     </div>
-  </div>
-  
-  <div class="flex justify-center fixed bottom-0 left-0 right-0 z-50 py-4 bg-white/80 backdrop-blur-sm">
-    <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center" popovertarget="add-list">+ Tambah List Baru</button>
-  </div>
-  
-  <div popover id="add-list">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia officiis nisi architecto reiciendis ut ducimus harum, cumque ipsa voluptas quod tenetur sequi quae incidunt. Omnis atque consectetur fugiat aspernatur obcaecati!
   </div>
 
-  <div>
-    
+  <div class="flex justify-center fixed bottom-0 left-0 right-0 z-10 py-4 bg-white/80 backdrop-blur-sm">
+    <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center" onclick="addTask.showModal()">+ Tambah List Baru</button>
   </div>
+
+  <dialog id="addTask" class="modal">
+    <div class="modal-box ">
+      <h3 class="font-semibold mb-4 text-lg text-center">Tambah Todo Baru</h3>
+      <form class="form" action="#" id="add-todo">
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend" for="title">Masukkan hal yang akan dilakukan</legend>
+          <input type="text" class="input" id="title" name="title" required placeholder="Type here" />
+          <p class="label">required</p>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend" for="title">Masukkan tanggal harus selesai</legend>
+          <input type="date" class="input" id="date" name="date" required placeholder="Type here" />
+          <p class="label">required</p>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend">Deskripsi</legend>
+          <textarea class="textarea h-24" placeholder="deskripsi" id="description" name="description"></textarea>
+          <div class="label">Optional</div>
+        </fieldset>
+        <input type="submit" value="Submit" name="Submit" class="btn-submit hover:bg-purple-500 border border-purple-500 p-2 rounded-lg">
+      </form>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
 
 </main>
 
