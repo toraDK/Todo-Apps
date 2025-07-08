@@ -15,23 +15,23 @@
         <button class="h-7 w-7 rounded-full flex text-center justify-center mx-2 my-2 text-gray-600 border border-gray-300 hover:bg-gray-300"><</button>
       </div>
 
-      <div class="profile flex gap-3 items-center">
+      <!-- <div class="profile flex gap-3 items-center">
         <img class="h-10 w-10 rounded-full shadow-xl/30" src="../assets/download.jpg" alt="">
         <div>
           <p class="text-[12px] text-gray-500">Hello,</p>
           <p class="text-sm font-normal">Tora Digda K</p>
         </div>
-      </div>
+      </div> -->
     </nav>
   </header>
 
-  <main class="py-7">
-    <div class="my-8 cursor-pointer hidden lg:inline">
-      <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center" onclick="addTask.showModal()">+ Tambah List Baru</button>
+  <main class="p-7 lg:w-[90%] lg:mx-auto lg:shadow- lg:border lg:border-gray-200 lg:rounded-lg">
+    <div class="cursor-pointer hidden lg:inline">
+      <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center my-8" onclick="addTask.showModal()">+ Tambah List Baru</button>
     </div>
     <div class="contaner mb-6">
       <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400">(12)</span></p>
-      <div class="content flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8 justify-center" id="todos">
+      <div class="content flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8" id="todos">
         <!-- hapus justify center saat ada lebih dari 1 content -->
 
         <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
@@ -52,7 +52,7 @@
     
     <div class="container mb-6">
       <p class="text-base font-semibold">completed <span class="font-medium text-gray-400">(12)</span></p>
-      <div class="content flex flex-col gap-3 items-center sm:flex-row sm:flex-wrap sm:justify-center" id="completed-todos">
+      <div class="content flex flex-col gap-3 items-center sm:flex-row sm:flex-wrap sm:justify-center lg:justify-normal" id="completed-todos">
 
         <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
           <div class="card-body">

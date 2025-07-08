@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function addTodo() {
         const textTodo = document.getElementById('title').value;
         const timestamp = document.getElementById('date').value;
+        const description = document.getElementById('description').value;
     
         const generatedID = generateId();
-        const todoObject = generateTodoObject(generatedID, textTodo, timestamp, false);
+        const todoObject = generateTodoObject(generatedID, textTodo, timestamp, description, false);
         todos.push(todoObject);
     
         document.dispatchEvent(new Event(RENDER_EVENT));
@@ -24,11 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     //fungsi menyimpan inputan menjadi object
-    function generateTodoObject(id, task, timestamp, isCompleted) {
+    function generateTodoObject(id, task, timestamp, description, isCompleted) {
         return {
             id,
             task,
             timestamp,
+            description,
             isCompleted
         }
     }
