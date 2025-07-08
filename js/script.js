@@ -5,117 +5,170 @@ const STORAGE_KEY = 'TODO_APPS';
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    //fungsi generate id random
-    function generateId() {
-        return +new Date();
-    }
-
-    //fungsi tambah list
-    function addTodo() {
+    // Fungsi untuk menambah todo baru
+    function addToDoList() {
         const textTodo = document.getElementById('title').value;
         const timestamp = document.getElementById('date').value;
         const description = document.getElementById('description').value;
-    
-        const generatedID = generateId();
-        const todoObject = generateTodoObject(generatedID, textTodo, timestamp, description, false);
+
+        // Validasi input
+        if (textTodo === '' || timestamp === '') {
+            alert('Judul dan tanggal harus diisi!');
+            return;
+        }
+
+        const generatedID = +new Date();
+        const todoObject = {
+            id: generatedID,
+            task: textTodo,
+            timestamp: timestamp,
+            description: description,
+            isCompleted: false
+        };
+        
         todos.push(todoObject);
-    
         document.dispatchEvent(new Event(RENDER_EVENT));
         saveData();
+        
+        // Reset form
+        document.getElementById('title').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('description').value = '';
+        
+        // Tutup modal
+        document.getElementById('addTask').close();
+        
+        console.log(todos);
     }
-    
-    //fungsi menyimpan inputan menjadi object
-    function generateTodoObject(id, task, timestamp, description, isCompleted) {
-        return {
-            id,
-            task,
-            timestamp,
-            description,
-            isCompleted
-        }
-    }
-    
-    //fungsi membuat bagian container todolist
+
+    // Fungsi membuat elemen todo
     function makeTodo(todoObject) {
-        const textTitle = document.createElement('h2');
-        textTitle.innerText = todoObject.task;
-    
-        const textTimestamp = document.createElement('p');
-        textTimestamp.innerText = todoObject.timestamp;
-    
-        const textContainer = document.createElement('div');
-        textContainer.classList.add('inner');
-        textContainer.append(textTitle, textTimestamp);
-    
-        const container = document.createElement('div');
-        container.classList.add('item', 'shadow');
-        container.append(textContainer);
-        container.setAttribute('id', `todo-${todoObject.id}`);
-    
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card', 'w-80', 'bg-base-100', 'card-lg', 'shadow-xl', 'grow-0', 'shrink-0');
+        cardContainer.setAttribute('id', `todo-${todoObject.id}`);
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        // Title
+        const title = document.createElement('p');
+        title.classList.add('font-medium', 'text-lg');
+        title.innerText = todoObject.task;
+
+        // Date
+        const date = document.createElement('p');
+        date.classList.add('font-normal', 'text-xs');
+        date.innerText = formatDate(todoObject.timestamp);
+
+        // HR
+        const hr = document.createElement('hr');
+
+        // Description label
+        const descLabel = document.createElement('p');
+        descLabel.classList.add('font-normal', 'text-sm');
+        descLabel.innerText = 'description :';
+
+        // Description content
+        const descContent = document.createElement('p');
+        descContent.classList.add('font-normal', 'text-base');
+        descContent.innerText = todoObject.description || 'No description';
+
+        // Actions container
+        const actionsContainer = document.createElement('div');
+        actionsContainer.classList.add('justify-end', 'card-actions');
+
+        // Append elements
+        cardBody.append(title, date, hr, descLabel, descContent, actionsContainer);
+        cardContainer.append(cardBody);
+
         if (todoObject.isCompleted) {
-            const undoButton = document.createElement('button');
-            undoButton.classList.add('undo-button');
-        
-            undoButton.addEventListener('click', function () {
-                undoTaskFromCompleted(todoObject.id);
-            });
-        
+            // Tombol untuk completed todos
             const trashButton = document.createElement('button');
-            trashButton.classList.add('trash-button');
-        
+            const trashImg = document.createElement('img');
+            trashImg.src = '../assets/trash-fill.svg';
+            trashImg.classList.add('h-8', 'w-8', 'cursor-pointer');
+            trashButton.appendChild(trashImg);
+            
             trashButton.addEventListener('click', function () {
                 removeTaskFromCompleted(todoObject.id);
             });
-    
-            container.append(undoButton, trashButton);
+
+            const undoButton = document.createElement('button');
+            const undoImg = document.createElement('img');
+            undoImg.src = '../assets/undo-ouline.svg';
+            undoImg.classList.add('h-8', 'w-8', 'cursor-pointer');
+            undoButton.appendChild(undoImg);
+            
+            undoButton.addEventListener('click', function () {
+                undoTaskFromCompleted(todoObject.id);
+            });
+
+            actionsContainer.append(trashButton, undoButton);
         } else {
+            // Tombol untuk ongoing todos
             const checkButton = document.createElement('button');
-            checkButton.classList.add('check-button');
+            const checkImg = document.createElement('img');
+            checkImg.src = '../assets/check-solid.svg';
+            checkImg.classList.add('h-8', 'w-8', 'cursor-pointer');
+            checkButton.appendChild(checkImg);
             
             checkButton.addEventListener('click', function () {
                 addTaskToCompleted(todoObject.id);
             });
-            
-            container.append(checkButton);
+
+            actionsContainer.append(checkButton);
         }
-    
-        return container;
+
+        return cardContainer;
     }
-    
-    //fungsi untuk tombol complete to do list
-    function addTaskToCompleted (todoId) {
+
+    // Fungsi untuk format tanggal
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        return date.toLocaleDateString('id-ID', options);
+    }
+
+    // Fungsi untuk menyelesaikan todo
+    function addTaskToCompleted(todoId) {
         const todoTarget = findTodo(todoId);
-    
+
         if (todoTarget == null) return;
-    
+
         todoTarget.isCompleted = true;
         document.dispatchEvent(new Event(RENDER_EVENT));
         saveData();
     }
-    
-    //fungsi hapus to do list
+
+    // Fungsi untuk menghapus todo
     function removeTaskFromCompleted(todoId) {
-        const todoTarget = findTodoIndex(todoId);
-    
-        if (todoTarget === -1) return;
-    
-        todos.splice(todoTarget, 1);
-        document.dispatchEvent(new Event(RENDER_EVENT));
-        saveData();
+        if (confirm('Apakah Anda yakin ingin menghapus todo ini?')) {
+            const todoTarget = findTodoIndex(todoId);
+
+            if (todoTarget === -1) return;
+
+            todos.splice(todoTarget, 1);
+            document.dispatchEvent(new Event(RENDER_EVENT));
+            saveData();
+        }
     }
-    
-    // fungsi undo to dolist menjadi belum dikerjakan
+
+    // Fungsi untuk undo todo
     function undoTaskFromCompleted(todoId) {
         const todoTarget = findTodo(todoId);
-    
+
         if (todoTarget == null) return;
-    
+
         todoTarget.isCompleted = false;
         document.dispatchEvent(new Event(RENDER_EVENT));
         saveData();
     }
-    
-    //fungsi mencari todo
+
+    // Fungsi mencari todo berdasarkan ID
     function findTodo(todoId) {
         for (const todoItem of todos) {
             if (todoItem.id === todoId) {
@@ -124,28 +177,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return null;
     }
-    
-    //sama mencari todo
+
+    // Fungsi mencari index todo berdasarkan ID
     function findTodoIndex(todoId) {
         for (const index in todos) {
             if (todos[index].id === todoId) {
                 return index;
             }
         }
-    
         return -1;
     }
-    
-    //fungsi unutk mengecek apakah browser bisa unutk sistem storage web
-    function isStorageExist() /* boolean */ {
+
+    // Fungsi untuk mengecek apakah browser mendukung localStorage
+    function isStorageExist() {
         if (typeof (Storage) === undefined) {
             alert('Browser kamu tidak mendukung local storage');
             return false;
         }
         return true;
     }
-    
-    //untuk save data ke storage
+
+    // Fungsi untuk menyimpan data ke localStorage
     function saveData() {
         if (isStorageExist()) {
             const parsed = JSON.stringify(todos);
@@ -153,54 +205,80 @@ document.addEventListener('DOMContentLoaded', function () {
             document.dispatchEvent(new Event(SAVED_EVENT));
         }
     }
-    
-    //fungsi untuk mmenampilkan data
+
+    // Fungsi untuk memuat data dari localStorage
     function loadDataFromStorage() {
         const serializedData = localStorage.getItem(STORAGE_KEY);
         let data = JSON.parse(serializedData);
-    
+
         if (data !== null) {
             for (const todo of data) {
                 todos.push(todo);
             }
         }
-    
+
         document.dispatchEvent(new Event(RENDER_EVENT));
     }
 
-    const submitForm = document.getElementById('form');
-    submitForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        addTodo();
-    });
-
-    document.addEventListener(SAVED_EVENT, function () {
-    console.log(localStorage.getItem(STORAGE_KEY));
-});
-
-document.addEventListener(RENDER_EVENT, function () {
-    // console.log(todos);
-
-    const uncompletedTODOList = document.getElementById('todos');
-    uncompletedTODOList.innerHTML = '';
-
-    const completedTODOList = document.getElementById('completed-todos');
-    completedTODOList.innerHTML = '';
-
-    for (const todoItem of todos) {
-        const todoElement = makeTodo(todoItem);
-        if (!todoItem.isCompleted) {
-            uncompletedTODOList.append(todoElement);
-        }else{
-            completedTODOList.append(todoElement);
+    // Fungsi untuk update counter
+    function updateCounter() {
+        const ongoingCount = todos.filter(todo => !todo.isCompleted).length;
+        const completedCount = todos.filter(todo => todo.isCompleted).length;
+        
+        // Update counter di UI (sesuaikan dengan ID di HTML)
+        const ongoingCounter = document.getElementById('onProgres');
+        const completedCounter = document.getElementById('Completed');
+        
+        if (ongoingCounter) {
+            ongoingCounter.textContent = `(${ongoingCount})`;
+        }
+        if (completedCounter) {
+            completedCounter.textContent = `(${completedCount})`;
         }
     }
+
+    // Event listener untuk form submit
+    const submitForm = document.getElementById('add-todo');
+    if (submitForm) {
+        submitForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            addToDoList();
+        });
+    }
+
+    // Event listener untuk render todo
+    document.addEventListener(RENDER_EVENT, function () {
+        const uncompletedTODOList = document.getElementById('todos');
+        const completedTODOList = document.getElementById('completed-todos');
+        
+        if (uncompletedTODOList) {
+            uncompletedTODOList.innerHTML = '';
+        }
+        if (completedTODOList) {
+            completedTODOList.innerHTML = '';
+        }
+
+        for (const todoItem of todos) {
+            const todoElement = makeTodo(todoItem);
+            if (!todoItem.isCompleted && uncompletedTODOList) {
+                uncompletedTODOList.append(todoElement);
+            } else if (todoItem.isCompleted && completedTODOList) {
+                completedTODOList.append(todoElement);
+            }
+        }
+        
+        // Update counter setiap kali render
+        updateCounter();
+    });
+
+    // Event listener untuk saved event
+    document.addEventListener(SAVED_EVENT, function () {
+        console.log('Data saved to localStorage:', localStorage.getItem(STORAGE_KEY));
+    });
+
+    // Load data saat halaman dimuat
+    if (isStorageExist()) {
+        loadDataFromStorage();
+    }
+
 });
-
-if (isStorageExist()) {
-    loadDataFromStorage();
-}
-
-});
-
-

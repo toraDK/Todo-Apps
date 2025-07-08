@@ -25,62 +25,21 @@
     </nav>
   </header>
 
-  <main class="p-7 lg:w-[90%] lg:mx-auto lg:shadow- lg:border lg:border-gray-200 lg:rounded-lg">
+  <main class="p-5 lg:w-[90%] lg:mx-auto lg:shadow- lg:border lg:border-gray-200 lg:rounded-lg">
     <div class="cursor-pointer hidden lg:inline">
       <button class="bg-purple-500 border border-purple-500 p-2 rounded-lg text-white align-center my-8" onclick="addTask.showModal()">+ Tambah List Baru</button>
     </div>
     <div class="contaner mb-6">
-      <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400">(12)</span></p>
-      <div class="content flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8" id="todos">
-        <!-- hapus justify center saat ada lebih dari 1 content -->
-
-        <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-          <div class="card-body">
-            <p class="font-medium text-lg">Tittle</p>
-            <p class="font-normal text-xs">18 april 2026</p>
-            <hr>
-            <p class="font-normal text-sm">description :</p>
-            <p class="font-normal text-base">A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="justify-end card-actions">
-              <button><img src="../assets/check-solid.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
-            </div>
-          </div>
-        </div>
+      <p class="text-base font-semibold">On Progress <span class="font-medium text-gray-400" id="onProgres"></span></p>
+      <div class="content flex flex-nowrap overflow-x-auto gap-3 py-4 pt-4 pb-8 " id="todos">
         
       </div>
     </div>
     
     <div class="container mb-6">
-      <p class="text-base font-semibold">completed <span class="font-medium text-gray-400">(12)</span></p>
+      <p class="text-base font-semibold">completed <span class="font-medium text-gray-400" id="Completed"></span></p>
       <div class="content flex flex-col gap-3 items-center sm:flex-row sm:flex-wrap sm:justify-center lg:justify-normal" id="completed-todos">
 
-        <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-          <div class="card-body">
-            <p class="font-medium text-lg">Tittle</p>
-            <p class="font-normal text-xs">18 april 2026</p>
-            <hr>
-            <p class="font-normal text-sm">description :</p>
-            <p class="font-normal text-base">A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="justify-end card-actions">
-              <button><img src="../assets/trash-fill.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
-              <button><img src="../assets/undo-ouline.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
-            </div>
-          </div>
-        </div>
-        <div class="card w-80 bg-base-100 card-lg shadow-xl grow-0 shrink-0">
-          <div class="card-body">
-            <p class="font-medium text-lg">Tittle</p>
-            <p class="font-normal text-xs">18 april 2026</p>
-            <hr>
-            <p class="font-normal text-sm">description :</p>
-            <p class="font-normal text-base">A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="justify-end card-actions">
-              <button><img src="../assets/trash-fill.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
-              <button><img src="../assets/undo-ouline.svg" alt="" class="h-8 w-h-8 cursor-pointer"></button>
-            </div>
-          </div>
-        </div>
-        
       </div>
     </div>
 
@@ -117,7 +76,7 @@
 
   </main>
 
-  <script src="js/script.js"></script>
+  <script src="../js/script.js"></script>
 
 </body>
 </html>
